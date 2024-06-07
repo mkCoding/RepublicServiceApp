@@ -1,4 +1,4 @@
-package com.example.republicserviceapp.data.db
+package com.kemakolam.republicserviceapp.data.db
 
 import androidx.room.Database
 

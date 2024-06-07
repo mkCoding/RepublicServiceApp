@@ -1,9 +1,9 @@
-package com.example.republicserviceapp.di
+package com.kemakolam.republicserviceapp.di
 
-import com.example.republicserviceapp.data.network.api.ApiDetails
-import com.example.republicserviceapp.data.network.api.ApiEndpoints
-import com.example.republicserviceapp.data.repository.ApiRepository
-import com.example.republicserviceapp.data.repository.ApiRepositoryImpl
+import com.kemakolam.republicserviceapp.data.network.api.ApiDetails
+import com.kemakolam.republicserviceapp.data.network.api.ApiEndpoints
+import com.kemakolam.republicserviceapp.data.repository.ApiRepository
+import com.kemakolam.republicserviceapp.data.repository.ApiRepositoryImpl
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -45,12 +45,12 @@ class ApiModule {
     }
 
     @Provides
-    fun providesApiEndpoints(retrofit: Retrofit):ApiEndpoints{
+    fun providesApiEndpoints(retrofit: Retrofit): ApiEndpoints {
         return retrofit.create(ApiEndpoints::class.java)
     }
 
     @Provides
-    fun providesRepository(apiEndpoints: ApiEndpoints): ApiRepository{
+    fun providesRepository(apiEndpoints: ApiEndpoints): ApiRepository {
         return ApiRepositoryImpl(apiEndpoints)
     }
 }

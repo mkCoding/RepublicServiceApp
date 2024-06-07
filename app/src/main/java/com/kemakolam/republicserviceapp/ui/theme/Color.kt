@@ -1,4 +1,4 @@
-package com.example.republicserviceapp.ui.theme
+package com.kemakolam.republicserviceapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

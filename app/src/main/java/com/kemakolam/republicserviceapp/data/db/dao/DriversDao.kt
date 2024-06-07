@@ -1,4 +1,4 @@
-package com.example.republicserviceapp.data.db.dao
+package com.kemakolam.republicserviceapp.data.db.dao
 
 import androidx.room.Dao
 

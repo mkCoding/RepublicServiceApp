@@ -1,4 +1,4 @@
-package com.example.republicserviceapp
+package com.kemakolam.republicserviceapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
