@@ -3,15 +3,11 @@ package com.kemakolam.republicserviceapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.kemakolam.republicserviceapp.ui.DriversScreen
+import androidx.navigation.compose.rememberNavController
+import com.kemakolam.republicserviceapp.ui.AppNavHost
+import com.kemakolam.republicserviceapp.ui.driver.DriversScreen
 import com.kemakolam.republicserviceapp.ui.theme.RepublicServiceAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,38 +17,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RepublicServiceAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-//                    Greeting("Android")
-                    DriversScreen()
-                }
+
+                val navController = rememberNavController()
+                AppNavHost(navController = navController)
+
             }
         }
     }
 }
 
-//@OptIn(ExperimentalComposeUiApi::class)
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier
-//    )
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    RepublicServiceAppTheme {
-//        Greeting("Android")
-//    }
-//}
 
 @Preview(showBackground = true)
 @Composable
 fun DriversPreview(){
-    DriversScreen()
+    val navController = rememberNavController()
+//    DriversScreen(navController = navController)
+
 }

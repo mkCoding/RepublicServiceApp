@@ -1,4 +1,4 @@
-package com.kemakolam.republicserviceapp.ui
+package com.kemakolam.republicserviceapp.ui.driver
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -20,10 +20,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,10 +37,31 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.kemakolam.republicserviceapp.R
+import com.kemakolam.republicserviceapp.ui.Driver
+import dagger.hilt.android.AndroidEntryPoint
+
 
 @Composable
-fun DriversScreen(){
+fun DriversScreen(navController: NavController, viewModel: DriverViewModel = hiltViewModel()){
+
+    /*
+           Pass to param based on needs
+           PreviewDriverViewModel - Preview
+           DriverViewModel - App Running
+     */
+
+    //val viewModel: DriverViewModel = hiltViewModel()
+
+    val driversList by viewModel.driversList.observeAsState() //variable to accessing list from view model
+    println(driversList)
+
+
 
     //Keep track on whether sorting is applied
     var isSorted by remember { mutableStateOf(false) }
@@ -65,7 +88,7 @@ fun DriversScreen(){
         Box(
             modifier = Modifier
                 .size(48.dp)
-                .clickable(onClick = {isSorted = !isSorted  })
+                .clickable(onClick = { isSorted = !isSorted })
                 .fillMaxWidth()
                 .align(alignment = Alignment.End),
 
@@ -98,7 +121,7 @@ fun DriversScreen(){
         )
 
 
-        DriversList(drivers = if (isSorted) dummyItems.sortedBy { it.driverName.split(" ").last() } else dummyItems )
+        DriversList(navController = navController,drivers = if (isSorted) dummyItems.sortedBy { it.driverName.split(" ").last() } else dummyItems )
 
     }
 
@@ -106,8 +129,9 @@ fun DriversScreen(){
 
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DriversList(drivers:List<Driver>){
+fun DriversList(navController: NavController, drivers:List<Driver>){
     LazyColumn {
         items(drivers) { itemiuk ->
             Card(
@@ -118,16 +142,21 @@ fun DriversList(drivers:List<Driver>){
                     .border(
                         BorderStroke(2.dp, Color.Black),
                         shape = RoundedCornerShape(16.dp)
-                        
+
                     ),
                 elevation = CardDefaults.cardElevation(20.dp),
-                shape = RoundedCornerShape(16.dp)
+                shape = RoundedCornerShape(16.dp),
+                onClick = {
+                    // Navigate to driver details when card is clicked
+                    navController.navigate("details/${itemiuk.driverId}")
+                }
 
                 // Customize card background color if needed
             ){
                 Row (
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.height(70.dp)
+                    modifier = Modifier
+                        .height(70.dp)
                         .align(Alignment.CenterHorizontally)
                         .fillMaxWidth()
                         .background(Color.White)
@@ -161,5 +190,30 @@ fun DriversList(drivers:List<Driver>){
 @Preview( showBackground = true)
 @Composable
 fun DriversScreenPreview(){
-    DriversScreen()
+//    val navController = rememberNavController()
+//    DriversScreen(navController = navController)
+
+    val navController = rememberNavController()
+    val previewViewModel = PreviewDriverViewModel() // Mock ViewModel instance
+
+    //DriversScreen(navController = navController, viewModel = previewViewModel)
 }
+
+
+// Mock ViewModel for preview purposes
+class PreviewDriverViewModel : ViewModel() {
+    val driversList = MutableLiveData<List<Driver>>(listOf(
+        Driver("1", "John Smith"),
+        Driver("2", "Alice Johnson"),
+        Driver("3", "Bob Williams"),
+        Driver("4", "Charlie Jones"),
+        Driver("5", "David Brown"),
+        Driver("6", "Justin Thyme"),
+        Driver("7", "Anita Bath"),
+        Driver("8", "Rusty Pipes"),
+        Driver("9", "Dee Zaster"),
+        Driver("10", "Paige Turner")
+    ))
+}
+
+

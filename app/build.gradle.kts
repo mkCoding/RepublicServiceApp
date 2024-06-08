@@ -89,6 +89,10 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation ("androidx.compose.runtime:runtime-livedata:1.4.0")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0") //enables the hiltViewModel() in compose
+
 
 
     //---------------------Room database dependencies------------------
@@ -103,8 +107,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     //------------------Navigation Dependency --------------------
-    implementation ("androidx.navigation:navigation-compose:2.4.0-alpha10")
-
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
+    implementation ("androidx.compose.ui:ui:1.0.5")
+    implementation ("androidx.compose.material3:material3:1.0.0-alpha08")
 
     //----------------Testing Dependencies----------------
 
