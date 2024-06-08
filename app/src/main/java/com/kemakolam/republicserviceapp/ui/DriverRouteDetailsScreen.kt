@@ -83,7 +83,7 @@ fun DriverRouteDetailsScreenPreview(){
     //Dummy Data
     val dummyDrivers = listOf(
         Driver(driverId = "1", driverName = "John Doe"),
-        Driver(driverId = "2", driverName = "Jane Smith")
+        Driver(driverId = "102", driverName = "Jane Smith")
     )
 
     val dummyRoutes = listOf(
