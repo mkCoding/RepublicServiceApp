@@ -115,16 +115,25 @@ fun DriversList(drivers:List<Driver>){
                 // Customize card background color if needed
             ){
                 Row (
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.height(70.dp)
-                        .align(Alignment.CenterHorizontally),
-                    verticalAlignment = Alignment.CenterVertically
-                ){
+                        .align(Alignment.CenterHorizontally)
 
+                ){
                     Text(
-                        text = itemiuk.driverName,
+
+                        text = itemiuk.driverId,
                         modifier = Modifier,
                         style = TextStyle(fontSize = 20.sp)
                     )
+                    Text(
+                        text = itemiuk.driverName,
+                        modifier = Modifier
+                            .padding(start = 16.dp),
+                        style = TextStyle(fontSize = 20.sp)
+                    )
+
+
 
                     //Text(text = "Number")
 
