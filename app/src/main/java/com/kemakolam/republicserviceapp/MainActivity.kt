@@ -1,5 +1,6 @@
 package com.kemakolam.republicserviceapp
 
+import YourComposable
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

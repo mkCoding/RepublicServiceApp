@@ -23,6 +23,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -38,6 +42,10 @@ import com.kemakolam.republicserviceapp.R
 
 @Composable
 fun DriversScreen(){
+
+    //Keep track on whether sorting is applied
+    var isSorted by remember { mutableStateOf(false) }
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -50,21 +58,21 @@ fun DriversScreen(){
         )
 
 
-            Icon(
-                imageVector= Icons.Default.Add,
-                contentDescription = null, // Decorative element
-                tint = Color.White,
-                modifier = Modifier.size(24.dp)
-            )
+        Icon(
+            imageVector= Icons.Default.Add,
+            contentDescription = null, // Decorative element
+            tint = Color.White,
+            modifier = Modifier.size(24.dp)
+        )
 
         Box(
             modifier = Modifier
                 .size(48.dp)
-                .clickable(onClick = {/*TODO*/ })
+                .clickable(onClick = {isSorted = !isSorted  })
                 .fillMaxWidth()
-                .align(alignment = Alignment.Start),
+                .align(alignment = Alignment.End),
 
-        ) {
+            ) {
             Image(
                 painter = painterResource(id = R.drawable.sort_icon),
                 contentDescription = null, // Decorative element
@@ -75,16 +83,15 @@ fun DriversScreen(){
         }
 
         val items = listOf(
-            Driver("1", "Driver 1" ),
-            Driver("2", "Driver 2"),
-            Driver("3", "Driver 3"),
-            Driver("4", "Driver 4"),
-            Driver("5", "Driver 5"),
-            Driver("6", "Driver 6")
+            Driver("1", "John Smith"),
+            Driver("2", "Alice Johnson"),
+            Driver("3", "Bob Williams"),
+            Driver("4", "Charlie Jones"),
+            Driver("5", "David Brown")
         )
 
 
-        DriversList(drivers =items )
+        DriversList(drivers = if (isSorted) items.sortedBy { it.driverName.split(" ").last() } else items )
 
     }
 
@@ -102,7 +109,7 @@ fun DriversList(drivers:List<Driver>){
                     .fillMaxWidth()
                     .padding(8.dp)
                     .background(Color.White)
-               // Customize card background color if needed
+                // Customize card background color if needed
             ){
                 Row (
                     modifier = Modifier.height(70.dp)
