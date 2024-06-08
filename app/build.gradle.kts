@@ -102,6 +102,9 @@ dependencies {
     //-----------------Image Rendering dependency--------------
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    //------------------Navigation Dependency --------------------
+    implementation ("androidx.navigation:navigation-compose:2.4.0-alpha10")
+
 
     //----------------Testing Dependencies----------------
 

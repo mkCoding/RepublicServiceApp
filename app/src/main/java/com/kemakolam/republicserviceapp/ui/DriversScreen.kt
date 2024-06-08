@@ -101,7 +101,6 @@ fun DriversScreen(){
 }
 
 
-data class Driver(val driverId: String, val driverName: String)
 
 @Composable
 fun DriversList(drivers:List<Driver>){
