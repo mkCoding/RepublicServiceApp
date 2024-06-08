@@ -43,22 +43,28 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kemakolam.republicserviceapp.R
+import com.kemakolam.republicserviceapp.data.network.model.DriverModel
 import com.kemakolam.republicserviceapp.ui.Driver
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @Composable
-fun DriversScreen(navController: NavController, viewModel: DriverViewModel = hiltViewModel()){
-
+fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel){
     /*
            Pass to param based on needs
-           PreviewDriverViewModel - Preview
-           DriverViewModel - App Running
+           previewViewModel - Preview
+            - (uncomment the @Preview Method)
+            - Change param of this method to PreviewDriverViewModel
+           driverViewModel - App Running
      */
 
-    //val viewModel: DriverViewModel = hiltViewModel()
+    val previewViewModel = hiltViewModel<PreviewDriverViewModel>()
 
-    val driversList by viewModel.driversList.observeAsState() //variable to accessing list from view model
+
+
+
+
+    val driversList by driverViewModel.driversList.observeAsState() //variable to accessing list from view model
     println(driversList)
 
 
@@ -121,7 +127,8 @@ fun DriversScreen(navController: NavController, viewModel: DriverViewModel = hil
         )
 
 
-        DriversList(navController = navController,drivers = if (isSorted) dummyItems.sortedBy { it.driverName.split(" ").last() } else dummyItems )
+        DriversList(navController = navController,drivers = if (isSorted) driversList?.sortedBy { it?.name?.split(" ")?.last() } else driversList )
+        //DriversList(navController = navController,drivers = if (isSorted) dummyItems.sortedBy { it.driverName.split(" ").last() } else dummyItems )
 
     }
 
@@ -131,9 +138,9 @@ fun DriversScreen(navController: NavController, viewModel: DriverViewModel = hil
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DriversList(navController: NavController, drivers:List<Driver>){
+fun DriversList(navController: NavController, drivers:List<DriverModel?>?){
     LazyColumn {
-        items(drivers) { itemiuk ->
+        items(drivers ?: emptyList()) { itemiuk ->
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -148,7 +155,7 @@ fun DriversList(navController: NavController, drivers:List<Driver>){
                 shape = RoundedCornerShape(16.dp),
                 onClick = {
                     // Navigate to driver details when card is clicked
-                    navController.navigate("details/${itemiuk.driverId}")
+                    navController.navigate("details/${itemiuk?.id}")
                 }
 
                 // Customize card background color if needed
@@ -164,13 +171,13 @@ fun DriversList(navController: NavController, drivers:List<Driver>){
                 ){
                     Text(
 
-                        text = itemiuk.driverId,
+                        text = itemiuk?.id?:"",
                         modifier = Modifier
                             .padding(start = 20.dp),
                         style = TextStyle(fontSize = 20.sp)
                     )
                     Text(
-                        text = itemiuk.driverName,
+                        text = itemiuk?.name?:"",
                         modifier = Modifier
                             .padding(start = 16.dp),
                         style = TextStyle(fontSize = 20.sp)
@@ -196,23 +203,23 @@ fun DriversScreenPreview(){
     val navController = rememberNavController()
     val previewViewModel = PreviewDriverViewModel() // Mock ViewModel instance
 
-    //DriversScreen(navController = navController, viewModel = previewViewModel)
+  //  DriversScreen(navController = navController, previewViewModel)
 }
 
 
 // Mock ViewModel for preview purposes
 class PreviewDriverViewModel : ViewModel() {
-    val driversList = MutableLiveData<List<Driver>>(listOf(
-        Driver("1", "John Smith"),
-        Driver("2", "Alice Johnson"),
-        Driver("3", "Bob Williams"),
-        Driver("4", "Charlie Jones"),
-        Driver("5", "David Brown"),
-        Driver("6", "Justin Thyme"),
-        Driver("7", "Anita Bath"),
-        Driver("8", "Rusty Pipes"),
-        Driver("9", "Dee Zaster"),
-        Driver("10", "Paige Turner")
+    val driversList = MutableLiveData<List<DriverModel>>(listOf(
+        DriverModel("1", "John Smith"),
+        DriverModel("2", "Alice Johnson"),
+        DriverModel("3", "Bob Williams"),
+        DriverModel("4", "Charlie Jones"),
+        DriverModel("5", "David Brown"),
+        DriverModel("6", "Justin Thyme"),
+        DriverModel("7", "Anita Bath"),
+        DriverModel("8", "Rusty Pipes"),
+        DriverModel("9", "Dee Zaster"),
+        DriverModel("10", "Paige Turner")
     ))
 }
 
