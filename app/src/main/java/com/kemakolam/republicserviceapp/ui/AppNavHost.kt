@@ -6,15 +6,16 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.kemakolam.republicserviceapp.ui.driver.DriverViewModel
 import com.kemakolam.republicserviceapp.ui.driver.DriversScreen
 import com.kemakolam.republicserviceapp.ui.driver_route_details.DriverRouteDetailsScreen
 
 
 @Composable
-fun AppNavHost(navController: NavHostController) {
+fun AppNavHost(navController: NavHostController, driverViewModel: DriverViewModel) {
     NavHost(navController, startDestination = "list") {
         composable("list") {
-            DriversScreen(navController)
+            DriversScreen(navController, driverViewModel)
         }
         composable(
             "details/{driverId}",

@@ -5,8 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.kemakolam.republicserviceapp.ui.AppNavHost
+import com.kemakolam.republicserviceapp.ui.driver.DriverViewModel
 import com.kemakolam.republicserviceapp.ui.driver.DriversScreen
 import com.kemakolam.republicserviceapp.ui.theme.RepublicServiceAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +21,8 @@ class MainActivity : ComponentActivity() {
             RepublicServiceAppTheme {
 
                 val navController = rememberNavController()
-                AppNavHost(navController = navController)
+                val driverViewModel: DriverViewModel = hiltViewModel()
+                AppNavHost(navController = navController, driverViewModel)
 
             }
         }

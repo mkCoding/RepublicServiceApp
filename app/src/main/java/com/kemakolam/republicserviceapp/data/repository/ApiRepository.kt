@@ -1,7 +1,6 @@
 package com.kemakolam.republicserviceapp.data.repository
 
 import com.kemakolam.republicserviceapp.data.network.model.DriverModel
-import com.kemakolam.republicserviceapp.data.network.model.DriversModel
 import com.kemakolam.republicserviceapp.data.network.model.RouteModel
 
 interface ApiRepository {
@@ -9,4 +8,5 @@ interface ApiRepository {
     suspend fun getDrivers(): List<DriverModel?>?
 
     suspend fun getRoutes():List<RouteModel?>?
+
 }
