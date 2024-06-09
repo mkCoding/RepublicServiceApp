@@ -156,6 +156,8 @@ fun DriversList(navController: NavController, drivers:List<DriverEntity?>?){
                 shape = RoundedCornerShape(16.dp),
                 onClick = {
                     // Navigate to driver details when card is clicked
+                    //navController.navigate("details/${itemiuk?.id}")
+
                     navController.navigate("details/${itemiuk?.id}")
                 }
 

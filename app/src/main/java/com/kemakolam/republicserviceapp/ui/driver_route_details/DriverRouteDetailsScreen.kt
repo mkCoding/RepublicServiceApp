@@ -17,13 +17,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
+import com.kemakolam.republicserviceapp.data.db.tables.RouteEntity
 import com.kemakolam.republicserviceapp.ui.Driver
 import com.kemakolam.republicserviceapp.ui.Route
 
 
 @Composable
 fun DriverRouteDetailsScreen(
-    driver: Driver,
+    driver: DriverEntity,
+    route:RouteEntity,
     onBack: () -> Unit
 ) {
     Column(
@@ -31,27 +34,27 @@ fun DriverRouteDetailsScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
+            text = "${driver.name}'s",
+            style = TextStyle(fontSize = 30.sp),
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally),
+            maxLines = 2
+        )
+        Text(
             text = "Route Details Screen",
             style = TextStyle(fontSize = 30.sp),
             modifier = Modifier.padding(bottom = 30.dp)
+                .align(Alignment.CenterHorizontally),
+            maxLines = 2
         )
 
-        DriverDetailsCard(driver = driver)
+        DriverDetailsCard(driver = driver, route = route)
 
-//        val context = LocalContext.current
-//        Button(
-//            onClick = {
-//                // Example of button functionality: Show a toast message
-////                Toast.makeText(context, "Button Clicked", Toast.LENGTH_SHORT).show()
-//            }
-//        ) {
-//            Text(text = "Click Me!")
-//        }
     }
 }
 
 @Composable
-fun DriverDetailsCard(driver: Driver) {
+fun DriverDetailsCard(driver: DriverEntity,  route:RouteEntity) {
     Card(
         modifier = Modifier
             .background(Color.White)
@@ -61,22 +64,22 @@ fun DriverDetailsCard(driver: Driver) {
         elevation = CardDefaults.cardElevation(20.dp)
     ) {
         Text(
-            text = "Route ID:",
+            text = "Route ID: ${route.id.toString()}",
             style = TextStyle(fontSize = 20.sp),
             modifier = Modifier.padding(start = 20.dp).padding(bottom = 10.dp)
         )
         Text(
-            text = "Driver's Name: ${driver.driverName}",
+            text = "Driver's Name: ${driver.name}",
             style = TextStyle(fontSize = 20.sp),
             modifier = Modifier.padding(start = 20.dp).padding(bottom = 10.dp)
         )
         Text(
-            text = "Routes Name: ", // Add route name here
+            text = "Routes Name: \n${route.name} ", // Add route name here
             style = TextStyle(fontSize = 20.sp),
             modifier = Modifier.padding(start = 20.dp).padding(bottom = 10.dp)
         )
         Text(
-            text = "Routes Type: ", // Add route type here
+            text = "Routes Type: ${route.type} ", // Add route type here
             style = TextStyle(fontSize = 20.sp),
             modifier = Modifier.padding(start = 20.dp)
         )
@@ -91,17 +94,17 @@ fun DriverRouteDetailsScreenPreview(){
 
     //Dummy Data
     val dummyDrivers = listOf(
-        Driver(driverId = "1", driverName = "John Doe"),
-        Driver(driverId = "102", driverName = "Jane Smith")
+        DriverEntity(id= "1", name = "John Doe"),
+        DriverEntity(id = "102", name = "Jane Smith")
     )
 
     val dummyRoutes = listOf(
-        Route(
+        RouteEntity(
             id = 101,
             name = "West Side Industrial Route",
             type = "B"
         ),
-        Route(
+        RouteEntity(
             id = 102,
             name = "South Side Commercial Route",
             type = "Z",
@@ -110,6 +113,6 @@ fun DriverRouteDetailsScreenPreview(){
     )
 
 
-    DriverRouteDetailsScreen(dummyDrivers.get(0),{})
+    DriverRouteDetailsScreen(dummyDrivers[0], dummyRoutes[0],{})
 
 }

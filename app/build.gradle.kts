@@ -113,6 +113,9 @@ dependencies {
     implementation ("androidx.compose.ui:ui:1.0.5")
     implementation ("androidx.compose.material3:material3:1.0.0-alpha08")
 
+    //---------------------Animation--------------------------------
+    implementation ("com.google.accompanist:accompanist-navigation-animation:0.34.0")
+
     //----------------Testing Dependencies----------------
 
 
