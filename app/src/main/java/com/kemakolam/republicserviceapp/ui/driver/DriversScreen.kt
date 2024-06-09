@@ -43,6 +43,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kemakolam.republicserviceapp.R
+import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
 import com.kemakolam.republicserviceapp.data.network.model.DriverModel
 import com.kemakolam.republicserviceapp.ui.Driver
 import dagger.hilt.android.AndroidEntryPoint
@@ -138,7 +139,7 @@ fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DriversList(navController: NavController, drivers:List<DriverModel?>?){
+fun DriversList(navController: NavController, drivers:List<DriverEntity?>?){
     LazyColumn {
         items(drivers ?: emptyList()) { itemiuk ->
             Card(
@@ -209,17 +210,17 @@ fun DriversScreenPreview(){
 
 // Mock ViewModel for preview purposes
 class PreviewDriverViewModel : ViewModel() {
-    val driversList = MutableLiveData<List<DriverModel>>(listOf(
-        DriverModel("1", "John Smith"),
-        DriverModel("2", "Alice Johnson"),
-        DriverModel("3", "Bob Williams"),
-        DriverModel("4", "Charlie Jones"),
-        DriverModel("5", "David Brown"),
-        DriverModel("6", "Justin Thyme"),
-        DriverModel("7", "Anita Bath"),
-        DriverModel("8", "Rusty Pipes"),
-        DriverModel("9", "Dee Zaster"),
-        DriverModel("10", "Paige Turner")
+    val driversList = MutableLiveData<List<DriverEntity>>(listOf(
+        DriverEntity(1,"1", "John Smith"),
+        DriverEntity(2,"2", "Alice Johnson"),
+        DriverEntity(3,"3", "Bob Williams"),
+        DriverEntity(4,"4", "Charlie Jones"),
+        DriverEntity(5,"5", "David Brown"),
+        DriverEntity(6,"6", "Justin Thyme"),
+        DriverEntity(7,"7", "Anita Bath"),
+        DriverEntity(8,"8", "Rusty Pipes"),
+        DriverEntity(9,"9", "Dee Zaster"),
+        DriverEntity(10,"10", "Paige Turner")
     ))
 }
 

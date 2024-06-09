@@ -1,13 +1,19 @@
 package com.kemakolam.republicserviceapp.di
 
+import android.content.Context
+import androidx.room.Room
 import com.kemakolam.republicserviceapp.data.network.api.ApiDetails
 import com.kemakolam.republicserviceapp.data.network.api.ApiEndpoints
 import com.kemakolam.republicserviceapp.data.repository.ApiRepository
 import com.kemakolam.republicserviceapp.data.repository.ApiRepositoryImpl
 import com.google.gson.Gson
+import com.kemakolam.republicserviceapp.data.db.MyDatabase
+import com.kemakolam.republicserviceapp.data.db.dao.DriversDao
+import com.kemakolam.republicserviceapp.data.db.dao.RoutesDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttp
 import okhttp3.OkHttpClient
@@ -49,8 +55,27 @@ class ApiModule {
         return retrofit.create(ApiEndpoints::class.java)
     }
 
+    //Provide DB Dependencies
     @Provides
-    fun providesRepository(apiEndpoints: ApiEndpoints): ApiRepository {
-        return ApiRepositoryImpl(apiEndpoints)
+    fun provideDatabase(@ApplicationContext appContext: Context): MyDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            MyDatabase::class.java,
+            "app_database"
+        ).build()
+    }
+
+    @Provides
+    fun provideDriverDao(database: MyDatabase): DriversDao {
+        return database.driversDao()
+    }
+    @Provides
+    fun provideRouteDao(database: MyDatabase): RoutesDao {
+        return database.routesDao()
+    }
+
+    @Provides
+    fun providesRepository(apiEndpoints: ApiEndpoints, driverDao: DriversDao, routesDao: RoutesDao): ApiRepository {
+        return ApiRepositoryImpl(apiEndpoints, driverDao, routesDao)
     }
 }

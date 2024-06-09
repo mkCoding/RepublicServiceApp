@@ -1,10 +1,12 @@
 package com.kemakolam.republicserviceapp.ui.driver
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
 import com.kemakolam.republicserviceapp.data.network.model.DriverModel
 import com.kemakolam.republicserviceapp.data.network.model.DriversModel
 import com.kemakolam.republicserviceapp.data.repository.ApiRepository
@@ -18,8 +20,13 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository):
     //If json response starts with an Object use this -> MutableLiveData<Model>
     //If json response starts with an Array use this -> MutableLiveData<ArrayList<Model>>
 
-    private val _driversList  = MutableLiveData<List<DriverModel?>?>()
-    val driversList: LiveData<List<DriverModel?>?> = _driversList
+    //API Structure
+//    private val _driversList  = MutableLiveData<List<DriverModel?>?>()
+//    val driversList: LiveData<List<DriverModel?>?> = _driversList
+
+    //DB Structure
+    private val _driversList = MutableLiveData<List<DriverEntity>?>()
+    val driversList: LiveData<List<DriverEntity>?> = _driversList
 
     init {
         getAllDrivers()
@@ -28,12 +35,16 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository):
     private fun getAllDrivers() {
 
         viewModelScope.launch {
-            val allDrivers = repository.getDrivers() //retrieves all drivers from API call
+            repository.fetchAndStoreDrivers() //fetch and store driver to DB
+
+            val allDrivers = repository.getStoredDrivers() //get the Drivers list specifically from the DB
+
+            //retrieves all drivers from API call
             if(allDrivers!=null){
 
                 //print drivers to the console
-                // Print drivers list to console
-                println(allDrivers)
+              Log.d("DriverViewModel",allDrivers.toString())
+//                println(allDrivers)
 
                 //expose data to the view
                 _driversList.postValue(allDrivers)

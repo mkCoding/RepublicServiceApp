@@ -6,11 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kemakolam.republicserviceapp.data.db.dao.DriversDao
 import com.kemakolam.republicserviceapp.data.db.dao.RoutesDao
-import com.kemakolam.republicserviceapp.data.db.tables.Driver
-import com.kemakolam.republicserviceapp.data.db.tables.Route
+import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
+import com.kemakolam.republicserviceapp.data.db.tables.RouteEntity
 
 @Database(
-    entities = [Driver::class, Route::class], //Specify the tables
+    entities = [DriverEntity::class, RouteEntity::class], //Specify the tables
     version = 1, //migrating to new DB version because of the new 'query' column added to Repo DB
     exportSchema = false
 )
