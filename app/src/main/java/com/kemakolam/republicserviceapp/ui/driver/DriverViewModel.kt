@@ -35,8 +35,8 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository):
     private fun getAllDrivers() {
 
         viewModelScope.launch {
-            repository.fetchAndStoreDrivers() //fetch and store driver to DB
-            repository.fetchAndStoreRoutes() //fetch and store routes to DB
+           // repository.fetchAndStoreDrivers() //fetch and store driver to DB
+            //repository.fetchAndStoreRoutes() //fetch and store routes to DB
 
             val allDrivers = repository.getStoredDrivers() //get the Drivers list specifically from the DB
 
