@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
 import com.kemakolam.republicserviceapp.data.db.tables.RouteEntity
 
 @Dao // Data Access Object-> Class/object used to access data in the Database
@@ -14,5 +15,8 @@ interface RoutesDao {
 
     @Query("SELECT * FROM RouteEntity")
     suspend fun getAllRoutes(): List<RouteEntity>
+
+    @Query ("SELECT * From RouteEntity where id =:routeId")
+    suspend fun getRouteById(routeId:Int): RouteEntity?
 
 }

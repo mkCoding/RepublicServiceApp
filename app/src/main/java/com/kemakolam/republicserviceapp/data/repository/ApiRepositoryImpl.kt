@@ -33,16 +33,22 @@ class ApiRepositoryImpl @Inject constructor(
         if(existingDriver == null){
             driversDao.insertDrivers(listOf(driver))
         }
-
     }
-
 
     }
 
     override suspend fun fetchAndStoreRoutes() {
         val routes = getRoutes() //make api call and get Routes
         val routeEntities = routes?.map { RouteEntity(id = it?.id, name = it?.name, type = it?.type) }
-        routeEntities?.let { routeDao.insertRoutes(it) } //add the routes list retrieved from API call to DB
+//        routeEntities?.let { routeDao.insertRoutes(it) } //add the routes list retrieved from API call to DB
+
+        //do not add duplicate Routes to the DB
+        routeEntities?.forEach { route ->
+            val existingRoute = routeDao.getRouteById(route.id?:0)
+            if(existingRoute==null){
+                routeDao.insertRoutes(listOf(route))
+            }
+        }
     }
 
     //-------------------Returns drivers and routes list specifically from the DB---------------
