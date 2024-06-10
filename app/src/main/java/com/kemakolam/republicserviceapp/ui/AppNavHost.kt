@@ -34,9 +34,7 @@ import kotlinx.coroutines.withContext
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    driverViewModel: DriverViewModel,
-    driverDao: DriversDao,
-    routesDao: RoutesDao) {
+    driverViewModel: DriverViewModel) {
 
 
     NavHost(navController, startDestination = "list") {
@@ -52,7 +50,7 @@ fun AppNavHost(
         ) {  navBackStackEntry ->
             val driverId = navBackStackEntry.arguments?.getString("driverId")
             var driver = getDriverById(driverId,driverViewModel) //retrieve actual driver from the DB
-            var routesList = runBlocking { getRoutesList(routesDao)} //get list of routes
+            var routesList = runBlocking { driverViewModel.getRoutesDao()} //get list of routes
 
             // Find the route that matches the driver ID
             val matchingRoute = routesList.find { it.id.toString() == driverId }
@@ -100,7 +98,7 @@ suspend fun getRouteById(routeId: Int, routesDao: RoutesDao): RouteEntity? {
 //Grab drivers from View Model
 fun getDriverById(driverId: String?,driverViewModel: DriverViewModel): DriverEntity? {
     // Replace with your actual data source
-    val driversList = driverViewModel.driversList.value
+    val driversList = driverViewModel.driversList.value //retrieved from view model
     return driversList?.find { it?.id == driverId }
 
 

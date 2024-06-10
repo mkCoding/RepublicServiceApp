@@ -59,16 +59,23 @@ class DriverViewModelTest {
     @Test
     fun testGetStoredDriversIsCalled() = runBlocking {
 
+        //Create the mock drivers list
         val mockDrivers = listOf(
             DriverEntity(1,"2","John Doe"),
             DriverEntity(2,"3","Jane Doe"),
             DriverEntity(3,"9","Spike Doe"),
             DriverEntity(4,"40","Jason Doe"))
 
+        //when mock repo will get stored drivers and return the mock drivers
         `when`(repository.getStoredDrivers()).thenReturn(mockDrivers)
 
+        //get all drivers from the view model
         driverViewModel.getAllDrivers()
 
+        //The onChanged() method of the mocked driversObserver object
+        //should be called with mockDrivers as an argument.
+        // This is a common pattern in unit testing to verify that certain
+        // methods are being called with the expected parameters.
         verify(driversObserver).onChanged(mockDrivers)
     }
 

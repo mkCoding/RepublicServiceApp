@@ -1,6 +1,7 @@
 package com.kemakolam.republicserviceapp.ui.driver_route_details
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -60,13 +62,21 @@ fun DriverRouteDetailsScreen(
 
 
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = oxfordBlue),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            backButton(onBack) //<-----Back Button
+        }
+
         Text(
             text = "${driver.name}'s",
             style = TextStyle(
@@ -163,7 +173,6 @@ fun DriverDetailsCard(driver: DriverEntity,  route:RouteEntity, onBack: () -> Un
     }
 
 
-backButton(onBack)
 
 
 
@@ -172,7 +181,8 @@ backButton(onBack)
 @Composable
 fun backButton(onBack: () -> Unit){
 
-    Column( modifier = Modifier
+    Column(
+        modifier = Modifier
         .wrapContentHeight()
 
     ){
@@ -181,8 +191,9 @@ fun backButton(onBack: () -> Unit){
         Button(
             onClick = {onBack()},
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 75.dp),
+                .wrapContentWidth()
+                .padding(10.dp)
+                .padding(top = 8.dp, start = 4.dp),
             colors = ButtonDefaults.buttonColors(containerColor = lightCyan),
 
             elevation = ButtonDefaults.buttonElevation(
@@ -191,15 +202,16 @@ fun backButton(onBack: () -> Unit){
                 disabledElevation = 0.dp,
                 hoveredElevation = 2.dp,
                 focusedElevation = 4.dp
-            )
+            ),
+            shape = RoundedCornerShape(size = 20.dp)
 
 
         ){
             Row (
-
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .wrapContentWidth()
+
             ){
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null,
@@ -208,14 +220,14 @@ fun backButton(onBack: () -> Unit){
                         .padding(start = 1.dp),
                     tint = oxfordBlue
                 )
-                Spacer(modifier = Modifier.width(80.dp))
+//                Spacer(modifier = Modifier.width(80.dp))
 
-                Text(
-                    text = "Back",
-                    style = TextStyle(fontSize = 40.sp, fontWeight = FontWeight.Bold),
-                    modifier = Modifier.padding(start = 8.dp),
-                    color = oxfordBlue
-                )
+//                Text(
+//                    text = "Back",
+//                    style = TextStyle(fontSize = 40.sp, fontWeight = FontWeight.Bold),
+//                    modifier = Modifier.padding(start = 8.dp),
+//                    color = oxfordBlue
+//                )
             }
         }
     }

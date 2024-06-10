@@ -53,6 +53,7 @@ import com.kemakolam.republicserviceapp.data.network.model.DriverModel
 import com.kemakolam.republicserviceapp.ui.Driver
 import dagger.hilt.android.AndroidEntryPoint
 
+//Custom Colors
 val richBlack = Color(0xFF0D1317) //Rich Black
 val oxfordBlue = Color(0xFF101D42) //Oxford Blue
 val lightCyan = Color (0xFFe0fbfc) //Light Cyan
@@ -69,8 +70,6 @@ fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel
      */
 
     //val previewViewModel = hiltViewModel<PreviewDriverViewModel>()
-
-
 
     val driversList by driverViewModel.driversList.observeAsState() //variable to accessing list from view model
     println(driversList)

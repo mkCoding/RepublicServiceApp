@@ -21,24 +21,13 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var driversDao: DriversDao
-
-    @Inject
-    lateinit var routesDao: RoutesDao
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             RepublicServiceAppTheme {
-
                 val navController = rememberNavController()
                 val driverViewModel: DriverViewModel = hiltViewModel()
-                val driversDao: DriversDao = driversDao
-                val routesDao: RoutesDao = routesDao
-
-                AppNavHost(navController = navController, driverViewModel = driverViewModel, driversDao, routesDao)
+                AppNavHost(navController = navController, driverViewModel = driverViewModel)
             }
         }
     }

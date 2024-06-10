@@ -6,7 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kemakolam.republicserviceapp.data.db.dao.DriversDao
+import com.kemakolam.republicserviceapp.data.db.dao.RoutesDao
 import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
+import com.kemakolam.republicserviceapp.data.db.tables.RouteEntity
 import com.kemakolam.republicserviceapp.data.network.model.DriverModel
 import com.kemakolam.republicserviceapp.data.network.model.DriversModel
 import com.kemakolam.republicserviceapp.data.repository.ApiRepository
@@ -14,8 +17,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+
 @HiltViewModel
-class DriverViewModel @Inject constructor(private val repository:ApiRepository):ViewModel(){
+class DriverViewModel @Inject constructor(private val repository:ApiRepository, private var driversDao: DriversDao, private var routesDao: RoutesDao):ViewModel(){
 
     //If json response starts with an Object use this -> MutableLiveData<Model>
     //If json response starts with an Array use this -> MutableLiveData<ArrayList<Model>>
@@ -30,6 +35,18 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository):
 
     init {
         getAllDrivers()
+    }
+
+    suspend fun getDriversDao():List<DriverEntity?>?{
+        return repository.getStoredDrivers();
+    }
+
+    suspend fun getRoutesDao():List<RouteEntity>{
+        return repository.getStoredRoutes();
+    }
+
+    fun getDrivers(){
+
     }
 
      fun getAllDrivers() {
