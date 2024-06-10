@@ -112,20 +112,20 @@ fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel
 
         //These names ultimately need to be pulled from the database
         //and passed here
-        val dummyItems = listOf(
-            Driver("1", "John Smith"),
-            Driver("2", "Alice Johnson"),
-            Driver("3", "Bob Williams"),
-            Driver("4", "Charlie Jones"),
-            Driver("5", "David Brown"),
-            Driver("6", "Justin Thyme"),
-            Driver("7", "Anita Bath"),
-            Driver("8", "Rusty Pipes"),
-            Driver("9", "Dee Zaster"),
-            Driver("10", "Paige Turner")
-
-
-        )
+//        val dummyItems = listOf(
+//            Driver("1", "John Smith"),
+//            Driver("2", "Alice Johnson"),
+//            Driver("3", "Bob Williams"),
+//            Driver("4", "Charlie Jones"),
+//            Driver("5", "David Brown"),
+//            Driver("6", "Justin Thyme"),
+//            Driver("7", "Anita Bath"),
+//            Driver("8", "Rusty Pipes"),
+//            Driver("9", "Dee Zaster"),
+//            Driver("10", "Paige Turner")
+//
+//
+//        )
 
 
         DriversList(navController = navController,drivers = if (isSorted) driversList?.sortedBy { it?.name?.split(" ")?.last() } else driversList )

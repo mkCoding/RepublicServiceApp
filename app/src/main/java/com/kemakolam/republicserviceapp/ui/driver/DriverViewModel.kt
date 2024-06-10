@@ -25,14 +25,14 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository):
 //    val driversList: LiveData<List<DriverModel?>?> = _driversList
 
     //DB Structure
-    private val _driversList = MutableLiveData<List<DriverEntity>?>()
+    val _driversList = MutableLiveData<List<DriverEntity>?>()
     val driversList: LiveData<List<DriverEntity>?> = _driversList
 
     init {
         getAllDrivers()
     }
 
-    private fun getAllDrivers() {
+     fun getAllDrivers() {
 
         viewModelScope.launch {
            // repository.fetchAndStoreDrivers() //fetch and store driver to DB
@@ -45,7 +45,7 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository):
 
                 //print drivers to the console
               Log.d("DriverViewModel",allDrivers.toString())
-//                println(allDrivers)
+
 
                 //expose data to the view
                 _driversList.postValue(allDrivers)

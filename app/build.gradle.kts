@@ -53,6 +53,13 @@ android {
     kapt {
         correctErrorTypes = true
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
+
+
 }
 
 dependencies {
@@ -66,6 +73,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -117,6 +127,13 @@ dependencies {
     implementation ("com.google.accompanist:accompanist-navigation-animation:0.34.0")
 
     //----------------Testing Dependencies----------------
+    testImplementation ("junit:junit:4.13.2") // JUnit 4
+    testImplementation ("org.mockito:mockito-core:3.12.4") // Mockito core
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0-RC")
+
+    testImplementation ("org.mockito:mockito-inline:3.11.2")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+    testImplementation ("androidx.arch.core:core-testing:2.1.0")
 
 
 }
