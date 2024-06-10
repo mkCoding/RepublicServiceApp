@@ -146,7 +146,9 @@ fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel
 fun DriversList(navController: NavController, drivers:List<DriverEntity?>?){
 
     Divider(color = Color.White, thickness = 3.dp)
-    LazyColumn () {
+    LazyColumn (
+        modifier = Modifier.height(900.dp)
+    ) {
         items(drivers ?: emptyList()) { itemiuk ->
             Card(
                 modifier = Modifier
