@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -47,6 +48,8 @@ val oxfordBlue = Color(0xFF101D42) //Oxford Blue
 val lightCyan = Color (0xFFe0fbfc) //Light Cyan
 val aquaIslandBlue = Color (0xFF98c1d9)//Aqua Island Blue
 val redOrage = Color (0xFFee6c4d) //Red Orange
+val darkRed = Color(0xFF8B0000) //dark Red
+val palatinateBlue = Color(0xFF232ED1)//PalatinateBlue
 
 @Composable
 fun DriverRouteDetailsScreen(
@@ -96,16 +99,21 @@ fun DriverDetailsCard(driver: DriverEntity,  route:RouteEntity, onBack: () -> Un
 
     Card(
         modifier = Modifier
-            .background(color = richBlack)
+            .background(color = aquaIslandBlue)
             .fillMaxWidth()
-            .wrapContentHeight()
+            .wrapContentSize()
             .padding(20.dp),
         elevation = CardDefaults.cardElevation(20.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = lightCyan, //Card background color,
+
+        )
 
 
     ) {
         Column(
-            modifier = Modifier.padding(20.dp)
+            modifier = Modifier
+                .padding(20.dp),
         ) {
             Text(
                 text = "Route ID: ${route.id}",
@@ -116,25 +124,25 @@ fun DriverDetailsCard(driver: DriverEntity,  route:RouteEntity, onBack: () -> Un
            //Route Name Section
             Text(
                 text = "Route Name:",
-                style = TextStyle(fontSize = 18.sp, color = Color.Blue, fontWeight = FontWeight.Bold),
+                style = TextStyle(fontSize = 18.sp, color = darkRed, fontWeight = FontWeight.Bold),
                 modifier = Modifier.padding(bottom = 4.dp)
             )
 
             Text(
                 text = "${route.name}",
-                style = TextStyle(fontSize = 18.sp, color = Color.Blue, fontStyle = FontStyle.Italic),
+                style = TextStyle(fontSize = 18.sp, color = darkRed, fontStyle = FontStyle.Italic),
                 modifier = Modifier.padding(bottom = 40.dp)
             )
 
             //Route Type Section
             Text(
                 text = "Route Type:",
-                style = TextStyle(fontSize = 18.sp, color = Color.Blue, fontWeight = FontWeight.Bold),
+                style = TextStyle(fontSize = 18.sp, color = darkRed, fontWeight = FontWeight.Bold),
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             Text(
                 text = "${route.type}",
-                style = TextStyle(fontSize = 18.sp, color = Color.Blue, fontStyle = FontStyle.Italic),
+                style = TextStyle(fontSize = 18.sp, color = darkRed, fontStyle = FontStyle.Italic),
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 

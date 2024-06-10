@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
     testImplementation("junit:junit:4.12")
     testImplementation("junit:junit:4.12")
@@ -134,6 +135,12 @@ dependencies {
     testImplementation ("org.mockito:mockito-inline:3.11.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
     testImplementation ("androidx.arch.core:core-testing:2.1.0")
+
+    testImplementation ("androidx.test.ext:junit:1.1.3")
+    testImplementation ("androidx.test:core:1.4.0")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
+    androidTestImplementation ("androidx.room:room-testing:2.5.0")
+    androidTestImplementation ("androidx.test:core-ktx:1.4.0")
 
 
 }

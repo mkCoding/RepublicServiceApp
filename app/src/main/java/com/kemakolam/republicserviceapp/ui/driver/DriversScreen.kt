@@ -206,9 +206,6 @@ fun DriversList(navController: NavController, drivers:List<DriverEntity?>?){
 @Preview( showBackground = true)
 @Composable
 fun DriversScreenPreview(){
-//    val navController = rememberNavController()
-//    DriversScreen(navController = navController)
-
     val navController = rememberNavController()
     val previewViewModel = PreviewDriverViewModel() // Mock ViewModel instance
 
