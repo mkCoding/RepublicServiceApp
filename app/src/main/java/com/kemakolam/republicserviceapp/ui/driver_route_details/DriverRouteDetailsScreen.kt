@@ -17,9 +17,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -39,6 +41,12 @@ import androidx.navigation.NavController
 import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
 import com.kemakolam.republicserviceapp.data.db.tables.RouteEntity
 
+//Custom Color
+val richBlack = Color(0xFF0D1317) //Rich Black
+val oxfordBlue = Color(0xFF101D42) //Oxford Blue
+val lightCyan = Color (0xFFe0fbfc) //Light Cyan
+val aquaIslandBlue = Color (0xFF98c1d9)//Aqua Island Blue
+val redOrage = Color (0xFFee6c4d) //Red Orange
 
 @Composable
 fun DriverRouteDetailsScreen(
@@ -47,13 +55,13 @@ fun DriverRouteDetailsScreen(
     onBack: () -> Unit
 ) {
 
-    //Custom Color
-    val customColor = Color(0xFF5C5346) // Custom color using RGB values
+
+
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = customColor),
+            .background(color = oxfordBlue),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -61,7 +69,7 @@ fun DriverRouteDetailsScreen(
             style = TextStyle(
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = Color.White
             ),
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
@@ -73,7 +81,7 @@ fun DriverRouteDetailsScreen(
             style = TextStyle(
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Gray // Change color to suit your design
+                color = Color.White // Change color to suit your design
             ),
             modifier = Modifier.padding(bottom = 30.dp)
         )
@@ -88,11 +96,12 @@ fun DriverDetailsCard(driver: DriverEntity,  route:RouteEntity, onBack: () -> Un
 
     Card(
         modifier = Modifier
-            .background(Color.Blue)
+            .background(color = richBlack)
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(start = 20.dp, end = 20.dp),
-        elevation = CardDefaults.cardElevation(20.dp)
+            .padding(20.dp),
+        elevation = CardDefaults.cardElevation(20.dp),
+
 
     ) {
         Column(
@@ -166,6 +175,8 @@ fun backButton(onBack: () -> Unit){
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 75.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = lightCyan),
+
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 2.dp,
                 pressedElevation = 8.dp,
@@ -173,6 +184,7 @@ fun backButton(onBack: () -> Unit){
                 hoveredElevation = 2.dp,
                 focusedElevation = 4.dp
             )
+
 
         ){
             Row (
@@ -185,15 +197,16 @@ fun backButton(onBack: () -> Unit){
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null,
                     modifier = Modifier
                         .size(50.dp)
-                        .padding(start = 1.dp)
-
+                        .padding(start = 1.dp),
+                    tint = oxfordBlue
                 )
                 Spacer(modifier = Modifier.width(80.dp))
 
                 Text(
                     text = "Back",
                     style = TextStyle(fontSize = 40.sp, fontWeight = FontWeight.Bold),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = 8.dp),
+                    color = oxfordBlue
                 )
             }
         }
