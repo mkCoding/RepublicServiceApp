@@ -59,7 +59,7 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository, 
             val allRoutes = repository.getStoredRoutes()
 
             //if there are no drivers in the DB then fetch drivers from API and put them in the DB
-            if(allDrivers == null && allRoutes == null || allRoutes!=null && allRoutes==null ||allDrivers==null && allRoutes!=null ){
+            if(allDrivers == null && allRoutes == null || allDrivers!=null && allRoutes==null ||allDrivers==null && allRoutes!=null ){
                 try{
                     repository.fetchAndStoreDrivers() //fetch and store driver to DB
                     repository.fetchAndStoreRoutes() //fetch and store routes to DB
