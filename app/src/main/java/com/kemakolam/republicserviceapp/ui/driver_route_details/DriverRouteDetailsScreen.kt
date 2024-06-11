@@ -87,7 +87,6 @@ fun DriverRouteDetailsScreen(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(vertical = 16.dp),
-//            maxLines = 2
         )
         Text(
             text = "Route Details Screen",
@@ -113,7 +112,7 @@ fun DriverDetailsCard(driver: DriverEntity,  route:RouteEntity, onBack: () -> Un
             .fillMaxWidth()
             .wrapContentSize()
             .padding(20.dp),
-        elevation = CardDefaults.cardElevation(20.dp),
+        elevation = CardDefaults.cardElevation(30.dp),
         colors = CardDefaults.cardColors(
             containerColor = lightCyan, //Card background color,
 
@@ -194,7 +193,7 @@ fun backButton(onBack: () -> Unit){
                 .wrapContentWidth()
                 .padding(10.dp)
                 .padding(top = 8.dp, start = 4.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = lightCyan),
+            colors = ButtonDefaults.buttonColors(containerColor = aquaIslandBlue),
 
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 2.dp,
@@ -203,7 +202,7 @@ fun backButton(onBack: () -> Unit){
                 hoveredElevation = 2.dp,
                 focusedElevation = 4.dp
             ),
-            shape = RoundedCornerShape(size = 20.dp)
+            shape = RoundedCornerShape(size = 15.dp)
 
 
         ){
@@ -216,18 +215,9 @@ fun backButton(onBack: () -> Unit){
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null,
                     modifier = Modifier
-                        .size(50.dp)
-                        .padding(start = 1.dp),
+                        .size(50.dp),
                     tint = oxfordBlue
                 )
-//                Spacer(modifier = Modifier.width(80.dp))
-
-//                Text(
-//                    text = "Back",
-//                    style = TextStyle(fontSize = 40.sp, fontWeight = FontWeight.Bold),
-//                    modifier = Modifier.padding(start = 8.dp),
-//                    color = oxfordBlue
-//                )
             }
         }
     }

@@ -49,9 +49,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kemakolam.republicserviceapp.R
 import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
-import com.kemakolam.republicserviceapp.data.network.model.DriverModel
-import com.kemakolam.republicserviceapp.ui.Driver
-import dagger.hilt.android.AndroidEntryPoint
 
 //Custom Colors
 val richBlack = Color(0xFF0D1317) //Rich Black
@@ -95,6 +92,7 @@ fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel
             color = Color.White
         )
 
+
         Box(
             modifier = Modifier
                 .size(48.dp)
@@ -109,27 +107,7 @@ fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel
                 modifier = Modifier.size(50.dp),
                 colorFilter = ColorFilter.tint(Color.White)
             )
-
         }
-
-
-        //These names ultimately need to be pulled from the database
-        //and passed here
-//        val dummyItems = listOf(
-//            Driver("1", "John Smith"),
-//            Driver("2", "Alice Johnson"),
-//            Driver("3", "Bob Williams"),
-//            Driver("4", "Charlie Jones"),
-//            Driver("5", "David Brown"),
-//            Driver("6", "Justin Thyme"),
-//            Driver("7", "Anita Bath"),
-//            Driver("8", "Rusty Pipes"),
-//            Driver("9", "Dee Zaster"),
-//            Driver("10", "Paige Turner")
-//
-//
-//        )
-
 
         DriversList(navController = navController,drivers = if (isSorted) driversList?.sortedBy { it?.name?.split(" ")?.last() } else driversList )
         //DriversList(navController = navController,drivers = if (isSorted) dummyItems.sortedBy { it.driverName.split(" ").last() } else dummyItems )
@@ -144,7 +122,20 @@ fun DriversScreen(navController: NavController, driverViewModel: DriverViewModel
 @Composable
 fun DriversList(navController: NavController, drivers:List<DriverEntity?>?){
 
-    Divider(color = Color.White, thickness = 3.dp)
+    //Styled divider
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 14.dp)
+            .padding(bottom = 10.dp)
+    ) {
+        Divider(
+            color = Color.White, // Change color as needed
+            thickness = 3.dp // Change thickness as needed
+        )
+    }
+
+    //List of Drivers
     LazyColumn (
         modifier = Modifier.height(900.dp)
     ) {

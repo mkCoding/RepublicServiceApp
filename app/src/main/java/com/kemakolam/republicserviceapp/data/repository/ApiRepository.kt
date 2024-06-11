@@ -5,10 +5,8 @@ import com.kemakolam.republicserviceapp.data.db.tables.RouteEntity
 import com.kemakolam.republicserviceapp.data.network.model.DriverModel
 import com.kemakolam.republicserviceapp.data.network.model.RouteModel
 
-import com.kemakolam.republicserviceapp.ui.Route
-
 interface ApiRepository {
-    //Method to be implemented by ApiRepositoryImpl
+    //Get Drivers and Routes specifically from API call
     suspend fun getDrivers(): List<DriverModel?>?
 
     suspend fun getRoutes():List<RouteModel?>?
@@ -18,7 +16,7 @@ interface ApiRepository {
     suspend fun fetchAndStoreDrivers()
     suspend fun fetchAndStoreRoutes()
 
-    //Retrieve stored drivers from DB
+    //Retrieve drivers and routes specifically from DB
     suspend fun getStoredDrivers(): List<DriverEntity>
     suspend fun getStoredRoutes(): List<RouteEntity>
 

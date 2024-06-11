@@ -37,32 +37,49 @@ class DriverViewModel @Inject constructor(private val repository:ApiRepository, 
         getAllDrivers()
     }
 
-    suspend fun getDriversDao():List<DriverEntity?>?{
-        return repository.getStoredDrivers();
-    }
+//    suspend fun getDriversDao():List<DriverEntity?>?{
+//        return repository.getStoredDrivers();
+//    }
 
+    //Used in AppNavHost instead of injecting dependencies in MainActivity
     suspend fun getRoutesDao():List<RouteEntity>{
         return repository.getStoredRoutes();
     }
 
-    fun getDrivers(){
-
-    }
+//    suspend fun getDrivers(){
+//
+//    }
+//
+//    suspend fun getRoutes(){
+//
+//    }
 
      fun getAllDrivers() {
 
         viewModelScope.launch {
-//            repository.fetchAndStoreDrivers() //fetch and store driver to DB
-//            repository.fetchAndStoreRoutes() //fetch and store routes to DB
 
-            val allDrivers = repository.getStoredDrivers() //get the Drivers list specifically from the DB
+            //get the Drivers list specifically from the DB
+            val allDrivers = repository.getStoredDrivers()
+            val allRoutes = repository.getStoredRoutes()
 
-            //retrieves all drivers from API call
+            //if there are no drivers in the DB then fetch drivers from API and put them in the DB
+            if(allDrivers == null && allRoutes == null){
+                try{
+                    repository.fetchAndStoreDrivers() //fetch and store driver to DB
+                    repository.fetchAndStoreRoutes() //fetch and store routes to DB
+                }catch (e:Exception){
+                    // Handle error fetching data from API or storing data in the DB
+                    Log.e("DriverViewModel", "Error fetching or storing data: ${e.message}")
+                    return@launch
+                }
+
+            }
+
+            //if there are drivers in the DB
             if(allDrivers!=null){
 
                 //print drivers to the console
-              Log.d("DriverViewModel",allDrivers.toString())
-
+                Log.d("DriverViewModel", allDrivers.toString())
 
                 //expose data to the view
                 _driversList.postValue(allDrivers)

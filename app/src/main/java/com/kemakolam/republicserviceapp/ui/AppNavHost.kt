@@ -56,7 +56,7 @@ fun AppNavHost(
             val matchingRoute = routesList.find { it.id.toString() == driverId }
 
             if(driver!=null && routesList!=null && driver?.id == matchingRoute?.id.toString()){
-                //a.) If Driver Id is the same as Route Id, then display then display all route details on DriverRouteDetailsScreen
+                //a.) If Driver Id is the same as Route Id, then display then display the associated route details on DriverRouteDetailsScreen
 
                 //If both driver and route exist, display the associated route details
                 DriverRouteDetailsScreen(driver = driver!!, route = matchingRoute!!) { navController.popBackStack() }
