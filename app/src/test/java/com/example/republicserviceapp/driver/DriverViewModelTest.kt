@@ -2,6 +2,8 @@ package com.example.republicserviceapp.driver
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.kemakolam.republicserviceapp.data.db.dao.DriversDao
+import com.kemakolam.republicserviceapp.data.db.dao.RoutesDao
 import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
 import com.kemakolam.republicserviceapp.data.repository.ApiRepository
 import com.kemakolam.republicserviceapp.ui.driver.DriverViewModel
@@ -41,6 +43,15 @@ class DriverViewModelTest {
     @Mock
     private lateinit var repository: ApiRepository
 
+    @Mock
+    private lateinit var driversDao: DriversDao
+
+    @Mock
+    private lateinit var routesDao: RoutesDao
+
+
+
+
     private lateinit var driverViewModel: DriverViewModel
 
     @Mock
@@ -49,7 +60,7 @@ class DriverViewModelTest {
     @Before
     fun setUp(){
         MockitoAnnotations.initMocks(this)
-        driverViewModel = DriverViewModel(repository)
+        driverViewModel = DriverViewModel(repository, driversDao, routesDao)
         driverViewModel.driversList.observeForever(driversObserver)
     }
 

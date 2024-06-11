@@ -74,9 +74,6 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
-    testImplementation("junit:junit:4.12")
-    testImplementation("junit:junit:4.12")
-    testImplementation("junit:junit:4.12")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -94,7 +91,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     //GSON
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.10.0")
 
     //Hilt
@@ -114,8 +111,6 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
 
 
-
-
     //-----------------Image Rendering dependency--------------
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
@@ -128,7 +123,6 @@ dependencies {
     implementation ("com.google.accompanist:accompanist-navigation-animation:0.34.0")
 
     //----------------Testing Dependencies----------------
-    testImplementation ("junit:junit:4.13.2") // JUnit 4
     testImplementation ("org.mockito:mockito-core:3.12.4") // Mockito core
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0-RC")
 
@@ -136,7 +130,6 @@ dependencies {
     testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
     testImplementation ("androidx.arch.core:core-testing:2.1.0")
 
-    testImplementation ("androidx.test.ext:junit:1.1.3")
     testImplementation ("androidx.test:core:1.4.0")
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
     androidTestImplementation ("androidx.room:room-testing:2.5.0")

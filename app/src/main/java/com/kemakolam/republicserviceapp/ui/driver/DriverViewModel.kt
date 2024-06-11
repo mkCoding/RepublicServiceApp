@@ -3,20 +3,16 @@ package com.kemakolam.republicserviceapp.ui.driver
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kemakolam.republicserviceapp.data.db.dao.DriversDao
 import com.kemakolam.republicserviceapp.data.db.dao.RoutesDao
 import com.kemakolam.republicserviceapp.data.db.tables.DriverEntity
 import com.kemakolam.republicserviceapp.data.db.tables.RouteEntity
-import com.kemakolam.republicserviceapp.data.network.model.DriverModel
-import com.kemakolam.republicserviceapp.data.network.model.DriversModel
 import com.kemakolam.republicserviceapp.data.repository.ApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 
 @HiltViewModel
