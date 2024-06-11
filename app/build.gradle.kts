@@ -84,55 +84,55 @@ dependencies {
 
     //--------------API Dependencies------------------
     // Retrofit -> Network
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
 
     //OkHttp
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation(libs.okhttp)
 
     //GSON
-    implementation("com.google.code.gson:gson:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.10.0")
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
 
     //Hilt
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation ("androidx.compose.runtime:runtime-livedata:1.4.0")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0") //enables the hiltViewModel() in compose
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation (libs.androidx.runtime.livedata)
+    implementation (libs.androidx.hilt.navigation.compose) //enables the hiltViewModel() in compose
 
 
 
     //---------------------Room database dependencies------------------
     val room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
 
 
     //-----------------Image Rendering dependency--------------
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.glide)
 
     //------------------Navigation Dependency --------------------
-    implementation ("androidx.navigation:navigation-compose:2.7.7")
-    implementation ("androidx.compose.ui:ui:1.0.5")
-    implementation ("androidx.compose.material3:material3:1.0.0-alpha08")
+    implementation (libs.androidx.navigation.compose)
+    implementation (libs.ui)
+    implementation (libs.material3)
 
     //---------------------Animation--------------------------------
-    implementation ("com.google.accompanist:accompanist-navigation-animation:0.34.0")
+    implementation (libs.accompanist.navigation.animation)
 
     //----------------Testing Dependencies----------------
-    testImplementation ("org.mockito:mockito-core:3.12.4") // Mockito core
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0-RC")
+    testImplementation (libs.mockito.core) // Mockito core
+    testImplementation (libs.kotlinx.coroutines.test)
 
-    testImplementation ("org.mockito:mockito-inline:3.11.2")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
-    testImplementation ("androidx.arch.core:core-testing:2.1.0")
+    testImplementation (libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation (libs.androidx.core.testing)
 
-    testImplementation ("androidx.test:core:1.4.0")
-    androidTestImplementation ("androidx.room:room-testing:2.5.0")
-    androidTestImplementation ("androidx.test:core-ktx:1.4.0")
+    testImplementation (libs.androidx.core)
+    androidTestImplementation (libs.androidx.room.testing)
+    androidTestImplementation (libs.core.ktx)
 
 
 }
